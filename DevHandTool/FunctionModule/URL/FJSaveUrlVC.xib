@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FJSaveUrlVC">
+            <connections>
+                <outlet property="tagTextView" destination="dC9-9N-zwK" id="qB5-9r-m12"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GqU-nX-bCN">
+                    <rect key="frame" x="25" y="127" width="44" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="标签：" id="LL3-uj-LYG">
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dC9-9N-zwK">
+                    <rect key="frame" x="75" y="125" width="385" height="22"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Smv-pg-xWd">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QyI-5t-X6H">
+                    <rect key="frame" x="421" y="54" width="39" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="确定" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="39B-H0-959">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="12" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onSaveButtonClicked:" target="-2" id="XhU-Bq-gAS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dC9-9N-zwK" secondAttribute="trailing" constant="20" id="3aD-0t-OBx"/>
+                <constraint firstItem="GqU-nX-bCN" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="4VV-KB-Q5J"/>
+                <constraint firstItem="QyI-5t-X6H" firstAttribute="top" secondItem="dC9-9N-zwK" secondAttribute="bottom" constant="52" id="LEb-Md-LF1"/>
+                <constraint firstItem="dC9-9N-zwK" firstAttribute="leading" secondItem="GqU-nX-bCN" secondAttribute="trailing" constant="8" id="SQc-BE-dmh"/>
+                <constraint firstItem="dC9-9N-zwK" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Sgz-4N-3K6"/>
+                <constraint firstItem="GqU-nX-bCN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="27" id="ZR2-M0-3YO"/>
+                <constraint firstAttribute="trailing" secondItem="QyI-5t-X6H" secondAttribute="trailing" constant="20" id="aDa-UM-NQW"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

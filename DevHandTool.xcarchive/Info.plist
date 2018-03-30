@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/DevHandTool.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.tuniu.app.DevHandTool</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0</string>
+		<key>CFBundleVersion</key>
+		<string>1</string>
+		<key>SigningIdentity</key>
+		<string>Mac Developer: shadowhounter@icloud.com (W48XJLN2JJ)</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2018-03-06T17:13:16Z</date>
+	<key>Name</key>
+	<string>DevHandTool</string>
+	<key>SchemeName</key>
+	<string>DevHandTool</string>
+</dict>
+</plist>

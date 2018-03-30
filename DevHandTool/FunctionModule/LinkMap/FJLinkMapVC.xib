@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FJLinkMapVC">
+            <connections>
+                <outlet property="contentTextView" destination="Qbu-13-mZY" id="9lx-XD-sbE"/>
+                <outlet property="contentView" destination="hkR-6P-qGy" id="aCN-gP-P6m"/>
+                <outlet property="filePathField" destination="nZM-aP-feF" id="9fU-b5-Oh2"/>
+                <outlet property="groupButton" destination="zch-5G-a55" id="HCo-fd-1WQ"/>
+                <outlet property="indicator" destination="8LS-AZ-hoh" id="KSh-Z9-0Td"/>
+                <outlet property="searchField" destination="Sg4-Y3-apO" id="B0Q-X5-JZU"/>
+                <outlet property="view" destination="ydj-1d-jVx" id="yWt-NY-O0y"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <view id="ydj-1d-jVx">
+            <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YwR-Bb-JuE">
+                    <rect key="frame" x="539" y="442" width="92" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="ak6-d1-PtM"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="选择文件" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zgq-tA-krH">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="chooseFile:" target="-2" id="RzX-3i-lzf"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nZM-aP-feF">
+                    <rect key="frame" x="18" y="449" width="501" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文件路径" id="Vph-1W-dnp">
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXM-Mg-7hc">
+                    <rect key="frame" x="462" y="403" width="67" height="32"/>
+                    <buttonCell key="cell" type="push" title="开始" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NEE-tC-veA">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="analyze:" target="-2" id="63X-mc-7qQ"/>
+                    </connections>
+                </button>
+                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="8LS-AZ-hoh">
+                    <rect key="frame" x="352" y="412" width="16" height="16"/>
+                </progressIndicator>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-b8-q10">
+                    <rect key="frame" x="537" y="403" width="94" height="32"/>
+                    <buttonCell key="cell" type="push" title="输出文件" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rqo-b0-aVG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="ouputFile:" target="-2" id="uK1-aU-2XL"/>
+                    </connections>
+                </button>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkR-6P-qGy">
+                    <rect key="frame" x="25" y="20" width="601" height="365"/>
+                    <clipView key="contentView" id="6wP-Xh-mA2">
+                        <rect key="frame" x="1" y="1" width="599" height="363"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Qbu-13-mZY">
+                                <rect key="frame" x="0.0" y="0.0" width="599" height="363"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="599" height="363"/>
+                                <size key="maxSize" width="601" height="10000000"/>
+                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Fh2-2i-U76">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="vCk-1W-6FH">
+                        <rect key="frame" x="584" y="1" width="16" height="363"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-Y3-apO">
+                    <rect key="frame" x="20" y="409" width="307" height="22"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="模块关键字" drawsBackground="YES" id="H3Q-CN-1Tx">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="zch-5G-a55">
+                    <rect key="frame" x="378" y="411" width="76" height="18"/>
+                    <buttonCell key="cell" type="check" title="分组解析" bezelStyle="regularSquare" imagePosition="left" inset="2" id="e2k-ul-xRg">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" size="13" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="zch-5G-a55" firstAttribute="centerY" secondItem="fXM-Mg-7hc" secondAttribute="centerY" id="077-Xx-W3f"/>
+                <constraint firstItem="fXM-Mg-7hc" firstAttribute="leading" secondItem="zch-5G-a55" secondAttribute="trailing" constant="16" id="0mw-YD-VyN"/>
+                <constraint firstAttribute="trailing" secondItem="YwR-Bb-JuE" secondAttribute="trailing" constant="15" id="6QX-Gw-mHg"/>
+                <constraint firstItem="Sg4-Y3-apO" firstAttribute="leading" secondItem="ydj-1d-jVx" secondAttribute="leading" constant="20" id="7Cj-rA-Ntu"/>
+                <constraint firstItem="8LS-AZ-hoh" firstAttribute="centerY" secondItem="fXM-Mg-7hc" secondAttribute="centerY" id="7T2-L2-xpy"/>
+                <constraint firstAttribute="trailing" secondItem="NC8-b8-q10" secondAttribute="trailing" constant="15" id="AgG-Vh-xRQ"/>
+                <constraint firstItem="YwR-Bb-JuE" firstAttribute="top" secondItem="ydj-1d-jVx" secondAttribute="top" constant="10" id="Hqa-MV-pAG"/>
+                <constraint firstAttribute="bottom" secondItem="hkR-6P-qGy" secondAttribute="bottom" constant="20" id="JHc-Xz-7P7"/>
+                <constraint firstItem="fXM-Mg-7hc" firstAttribute="top" secondItem="nZM-aP-feF" secondAttribute="bottom" constant="18" id="K5d-95-7XT"/>
+                <constraint firstItem="hkR-6P-qGy" firstAttribute="leading" secondItem="ydj-1d-jVx" secondAttribute="leading" constant="25" id="KvG-Ck-Zkw"/>
+                <constraint firstItem="NC8-b8-q10" firstAttribute="leading" secondItem="fXM-Mg-7hc" secondAttribute="trailing" constant="20" id="NFP-wc-vfC"/>
+                <constraint firstAttribute="trailing" secondItem="hkR-6P-qGy" secondAttribute="trailing" constant="14" id="QXN-N3-sMo"/>
+                <constraint firstItem="YwR-Bb-JuE" firstAttribute="leading" secondItem="nZM-aP-feF" secondAttribute="trailing" constant="28" id="UXx-6w-8w0"/>
+                <constraint firstItem="NC8-b8-q10" firstAttribute="centerY" secondItem="fXM-Mg-7hc" secondAttribute="centerY" id="VMM-mL-ODH"/>
+                <constraint firstItem="hkR-6P-qGy" firstAttribute="top" secondItem="ydj-1d-jVx" secondAttribute="top" constant="95" id="Y9I-Rm-H2r"/>
+                <constraint firstItem="Sg4-Y3-apO" firstAttribute="top" secondItem="ydj-1d-jVx" secondAttribute="top" constant="49" id="cOO-tS-rd4"/>
+                <constraint firstItem="nZM-aP-feF" firstAttribute="leading" secondItem="ydj-1d-jVx" secondAttribute="leading" constant="20" id="dd4-EA-2qZ"/>
+                <constraint firstItem="8LS-AZ-hoh" firstAttribute="leading" secondItem="Sg4-Y3-apO" secondAttribute="trailing" constant="25" id="pJQ-9L-nlN"/>
+                <constraint firstItem="fXM-Mg-7hc" firstAttribute="leading" secondItem="8LS-AZ-hoh" secondAttribute="trailing" constant="100" id="riM-pY-RXk"/>
+                <constraint firstItem="nZM-aP-feF" firstAttribute="top" secondItem="ydj-1d-jVx" secondAttribute="top" constant="14" id="wWb-mV-kgS"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
