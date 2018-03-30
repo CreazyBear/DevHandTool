@@ -18,9 +18,8 @@ extern NSString * const NSPasteboardTypeFJImage;
 @interface FJPasteboardHelper : NSObject
 SINGLETON_INTERFACE(FJPasteboardHelper, shared)
 
-- (FJPasteboardItem*)transferNSPasteboard;
+- (void)startService:(NSMenu*)menu;
 
-- (void)setupStatueBar:(NSMenu*)menu;
-
+- (void)endService;
 
 @end
