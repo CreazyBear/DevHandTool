@@ -189,8 +189,10 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
 
 - (void)addMenuItem:(FJPasteboardItem *) item atIndex:(NSInteger)index
 {
-    
+    //需要新增加的子项
     NSMenuItem * menuItem = [[NSMenuItem alloc] initWithTitle:@"" action:@selector(menuItemSelect:) keyEquivalent:@""];
+    
+    //检查是否有粘贴板菜单，没有就创建
     __block NSMenuItem * pboardMenuItem = nil;
     [self.menu.itemArray enumerateObjectsUsingBlock:^(NSMenuItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.title isEqualToString:@"粘贴板"]) {
@@ -202,13 +204,21 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
         pboardMenuItem = [[NSMenuItem alloc] initWithTitle:@"粘贴板" action:nil keyEquivalent:@""];
         [self.menu addItem:pboardMenuItem];
     }
+    //拿到子菜单，即所有粘贴项
+    NSMenu *subMenu;
+    if (pboardMenuItem.submenu) {
+        subMenu = pboardMenuItem.submenu;
+    }
+    else {
+        subMenu = [[NSMenu alloc] initWithTitle:@"粘贴板"];
+        [pboardMenuItem setSubmenu:subMenu];
+    }
     
-    NSMenu *subMenu = [[NSMenu alloc] initWithTitle:@"粘贴板"];
-    [pboardMenuItem setSubmenu:subMenu];
+    //设置事件响应的代理。不然无法响应事件
+    [menuItem setTarget:self];
     [subMenu insertItem:menuItem atIndex:index];
 
     [menuItem setToolTip:item.content];
-    
     NSDate * time = [NSDate dateWithTimeIntervalSince1970:[item.time floatValue]];
     NSString * content = item.content;
     NSString * type = item.type;
@@ -284,11 +294,24 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
 
 - (void)menuItemSelect:(id)sender
 {
-    NSInteger selectedIndex = [self.menu.itemArray indexOfObject:sender];
+    __block NSInteger selectedIndex = 0;
+    __block NSMenu *pboardMenu = nil;
+    //get the select item
+    [self.menu.itemArray enumerateObjectsUsingBlock:^(NSMenuItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.title isEqualToString:@"粘贴板"]) {
+            [obj.submenu.itemArray indexOfObject:sender];
+            pboardMenu = obj.submenu;
+            * stop = YES;
+        }
+    }];
     FJPasteboardItem * selectedItem = [self.pasteboardItemsArray objectAtIndex:selectedIndex];
+    
+    //remove the select item
     [self.pasteboardItemsArray removeObjectAtIndex:selectedIndex];
     [[FJDBManager defaultManager]deleteModel:selectedItem];
-    [self.menu removeItemAtIndex:selectedIndex];
+    [pboardMenu removeItemAtIndex:selectedIndex];
+    
+    //将数据写入到剪切板中
     NSPasteboard * pboard = [NSPasteboard generalPasteboard];
     [pboard clearContents];
     if ([selectedItem.type isEqualToString: NSPasteboardTypeString])

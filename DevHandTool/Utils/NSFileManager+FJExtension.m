@@ -28,6 +28,13 @@
 -(NSString*)getFJPasteboardDocumentPath {
     NSString * documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString * filePath = [NSString stringWithFormat:@"%@/FJPasteboard",documentPath];
+    BOOL isDirectory = NO;
+    if (![self fileExistsAtPath:filePath isDirectory:&isDirectory]) {
+        [self createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    if (!isDirectory) {
+        [self createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
     return filePath;
 }
 @end
