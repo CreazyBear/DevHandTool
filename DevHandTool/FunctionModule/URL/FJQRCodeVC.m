@@ -12,6 +12,7 @@
 @interface FJQRCodeVC ()
 @property (nonatomic, strong) NSString *qrStr;
 @property (weak) IBOutlet NSImageView *qrImageView;
+@property (weak) IBOutlet NSTextField *titleLabel;
 
 @end
 
@@ -29,7 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.titleLabel.maximumNumberOfLines = 2;
     [self.qrImageView setImage:[QRCodeImage qrImageWithContent:self.qrStr size:self.qrImageView.frame.size.width]];
+    self.titleLabel.stringValue = self.qrStr;
 }
 
 @end

@@ -34,6 +34,15 @@
     [self.rootWindowController showWindow:nil];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+    if (!flag)
+    {
+        [_rootWindow makeKeyAndOrderFront:self];
+    }
+    return YES;
+}
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     [[FJPasteboardHelper shared]endService];

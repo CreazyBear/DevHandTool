@@ -15,4 +15,5 @@
 - (NSMutableArray<FJPasteboardItem*>*) queryData;
 - (void) clearAllData;
 - (BOOL) deleteModel:(FJPasteboardItem*)model;
+- (FJPasteboardItem*)queryFirstData;
 @end

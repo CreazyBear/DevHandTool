@@ -37,10 +37,13 @@
 		09E536501FEA68BB00D036F5 /* ResourceFileSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E5364B1FEA68BB00D036F5 /* ResourceFileSearcher.m */; };
 		09E536541FEA68F000D036F5 /* FJUnusedImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E536521FEA68F000D036F5 /* FJUnusedImgViewController.m */; };
 		09E536551FEA68F000D036F5 /* FJUnusedImgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E536531FEA68F000D036F5 /* FJUnusedImgViewController.xib */; };
+		0A207E92207311EE009ACB7B /* FJPasteboardCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A207E91207311EE009ACB7B /* FJPasteboardCollectionViewItem.m */; };
 		0A735269206B303D00309048 /* FJBlueToothVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A735267206B303D00309048 /* FJBlueToothVC.m */; };
 		0A73526A206B303D00309048 /* FJBlueToothVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A735268206B303D00309048 /* FJBlueToothVC.xib */; };
 		0A73526D206B33E200309048 /* FJBlueToothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A73526C206B33E200309048 /* FJBlueToothManager.m */; };
 		0A735270206B3DE700309048 /* FJBlueToothPeripheralInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A73526F206B3DE700309048 /* FJBlueToothPeripheralInfoModel.m */; };
+		0AAB39A92074DD6A0023B8C0 /* FJPushVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB39A72074DD6A0023B8C0 /* FJPushVC.m */; };
+		0AAB39AA2074DD6A0023B8C0 /* FJPushVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB39A82074DD6A0023B8C0 /* FJPushVC.xib */; };
 		0AEFB25D206CD49300BDA229 /* NSTimer+FJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB25C206CD49300BDA229 /* NSTimer+FJExtension.m */; };
 		0AEFB260206CD4DE00BDA229 /* NSImage+FJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB25F206CD4DE00BDA229 /* NSImage+FJExtension.m */; };
 		0AEFB263206CD5D800BDA229 /* NSFileManager+FJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB262206CD5D800BDA229 /* NSFileManager+FJExtension.m */; };
@@ -111,6 +114,8 @@
 		09E536511FEA68F000D036F5 /* FJUnusedImgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJUnusedImgViewController.h; sourceTree = "<group>"; };
 		09E536521FEA68F000D036F5 /* FJUnusedImgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJUnusedImgViewController.m; sourceTree = "<group>"; };
 		09E536531FEA68F000D036F5 /* FJUnusedImgViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FJUnusedImgViewController.xib; sourceTree = "<group>"; };
+		0A207E90207311EE009ACB7B /* FJPasteboardCollectionViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJPasteboardCollectionViewItem.h; sourceTree = "<group>"; };
+		0A207E91207311EE009ACB7B /* FJPasteboardCollectionViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJPasteboardCollectionViewItem.m; sourceTree = "<group>"; };
 		0A735266206B303D00309048 /* FJBlueToothVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJBlueToothVC.h; sourceTree = "<group>"; };
 		0A735267206B303D00309048 /* FJBlueToothVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJBlueToothVC.m; sourceTree = "<group>"; };
 		0A735268206B303D00309048 /* FJBlueToothVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FJBlueToothVC.xib; sourceTree = "<group>"; };
@@ -118,6 +123,9 @@
 		0A73526C206B33E200309048 /* FJBlueToothManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJBlueToothManager.m; sourceTree = "<group>"; };
 		0A73526E206B3DE700309048 /* FJBlueToothPeripheralInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJBlueToothPeripheralInfoModel.h; sourceTree = "<group>"; };
 		0A73526F206B3DE700309048 /* FJBlueToothPeripheralInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJBlueToothPeripheralInfoModel.m; sourceTree = "<group>"; };
+		0AAB39A62074DD6A0023B8C0 /* FJPushVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJPushVC.h; sourceTree = "<group>"; };
+		0AAB39A72074DD6A0023B8C0 /* FJPushVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJPushVC.m; sourceTree = "<group>"; };
+		0AAB39A82074DD6A0023B8C0 /* FJPushVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FJPushVC.xib; sourceTree = "<group>"; };
 		0AEFB25B206CD49300BDA229 /* NSTimer+FJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+FJExtension.h"; sourceTree = "<group>"; };
 		0AEFB25C206CD49300BDA229 /* NSTimer+FJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+FJExtension.m"; sourceTree = "<group>"; };
 		0AEFB25E206CD4DE00BDA229 /* NSImage+FJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+FJExtension.h"; sourceTree = "<group>"; };
@@ -237,6 +245,7 @@
 		09E5360B1FEA5CFF00D036F5 /* FunctionModule */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB39A22074B7A60023B8C0 /* Push */,
 				0AEFB264206CD76B00BDA229 /* Pasteboard */,
 				0A735265206B2FE200309048 /* BlueTooth */,
 				09AA9DBA200DA2E2008F6C7E /* DBManager */,
@@ -368,6 +377,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		0A207E8F20731171009ACB7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A207E90207311EE009ACB7B /* FJPasteboardCollectionViewItem.h */,
+				0A207E91207311EE009ACB7B /* FJPasteboardCollectionViewItem.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0A735265206B2FE200309048 /* BlueTooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,9 +400,20 @@
 			path = BlueTooth;
 			sourceTree = "<group>";
 		};
+		0AAB39A22074B7A60023B8C0 /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				0AAB39A62074DD6A0023B8C0 /* FJPushVC.h */,
+				0AAB39A72074DD6A0023B8C0 /* FJPushVC.m */,
+				0AAB39A82074DD6A0023B8C0 /* FJPushVC.xib */,
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
 		0AEFB264206CD76B00BDA229 /* Pasteboard */ = {
 			isa = PBXGroup;
 			children = (
+				0A207E8F20731171009ACB7B /* Views */,
 				0AEFB26E206CDAC000BDA229 /* FJPasteboardHelper.h */,
 				0AEFB26F206CDAC000BDA229 /* FJPasteboardHelper.m */,
 				0AEFB26A206CD83900BDA229 /* Model */,
@@ -494,6 +523,7 @@
 				09693AB81FEB6473008DB0D8 /* mainScript.sh in Resources */,
 				098A116620158553003F881F /* FJSaveUrlVC.xib in Resources */,
 				09E535FC1FEA5A3700D036F5 /* Assets.xcassets in Resources */,
+				0AAB39AA2074DD6A0023B8C0 /* FJPushVC.xib in Resources */,
 				A58A32981FEA8CEB007F83DD /* FJUnuseedImportVC.xib in Resources */,
 				0914EBC21FEB88AD003BCFE7 /* FJQRCodeVC.xib in Resources */,
 				0A73526A206B303D00309048 /* FJBlueToothVC.xib in Resources */,
@@ -524,7 +554,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B4A7E371147632E4FB6A1612 /* [CP] Copy Pods Resources */ = {
@@ -568,6 +598,7 @@
 				0A73526D206B33E200309048 /* FJBlueToothManager.m in Sources */,
 				09E536541FEA68F000D036F5 /* FJUnusedImgViewController.m in Sources */,
 				09E5364F1FEA68BB00D036F5 /* StringUtils.m in Sources */,
+				0A207E92207311EE009ACB7B /* FJPasteboardCollectionViewItem.m in Sources */,
 				0A735269206B303D00309048 /* FJBlueToothVC.m in Sources */,
 				A58A32971FEA8CEB007F83DD /* FJUnuseedImportVC.m in Sources */,
 				A58A328D1FEA8CBB007F83DD /* FJLinkMapVC.m in Sources */,
@@ -593,6 +624,7 @@
 				09E5364D1FEA68BB00D036F5 /* ResourceStringSearcher.m in Sources */,
 				0914EBC11FEB88AD003BCFE7 /* FJQRCodeVC.m in Sources */,
 				0AEFB26D206CD86200BDA229 /* FJPasteboardItem.m in Sources */,
+				0AAB39A92074DD6A0023B8C0 /* FJPushVC.m in Sources */,
 				0AEFB273206CE5F000BDA229 /* FJDBPasteboardTableManager.m in Sources */,
 				A58A32921FEA8CD8007F83DD /* FJSameCodeVC.m in Sources */,
 				09AA9DBD200DA30C008F6C7E /* FJDBManager.m in Sources */,

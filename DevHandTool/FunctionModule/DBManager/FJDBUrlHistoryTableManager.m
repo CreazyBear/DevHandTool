@@ -59,7 +59,7 @@
     
 }
 
--(BOOL)deleteModel:(FJDBUrlHistoryModel*)model {
+- (BOOL) deleteUrlModel:(FJDBUrlHistoryModel*)model {
     BOOL result = NO;
     FMDatabase * db = [FMDatabase databaseWithPath:PATH_OF_DATABASE];
     if ([db open]) {

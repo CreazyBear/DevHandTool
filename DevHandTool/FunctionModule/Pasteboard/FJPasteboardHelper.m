@@ -14,6 +14,9 @@
 #import "FJDBManager.h"
 #import "NSImage+FJExtension.h"
 #import <ServiceManagement/ServiceManagement.h>
+#import "FJDBManager.h"
+#import "FJDBPasteboardTableManager.h"
+#import "NSTimer+FJExtension.h"
 
 NSString * const NSPasteboardTypeMIX = @"NSPasteboardTypeMIX";
 NSString * const NSPasteboardTypeFJPath = @"NSPasteboardTypeFJPath";
@@ -26,11 +29,13 @@ NSString * const NSPasteboardTypeFJImage = @"NSPasteboardTypeFJImage";
 @property (nonatomic, strong) NSTimer * timer;
 @property (nonatomic, strong) NSMutableArray<FJPasteboardItem*> * pasteboardItemsArray;
 @property (nonatomic, strong) NSPasteboardItem *lastPasteboardItemTemp;
+@property (nonatomic, strong) FJPasteboardItem *lastDBPasteboardItemTemp;
 
 @property (nonatomic, assign) NSInteger maxCount;
 @property (nonatomic, assign) NSInteger showTime;
 @property (nonatomic, assign) NSInteger fontSize;
 @property (nonatomic, assign) NSInteger MaxVisibleChars;
+@property (nonatomic, assign) NSInteger timeIntervel;
 @end
 
 
@@ -45,6 +50,7 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
         self.showTime = 1;
         self.fontSize = 12;
         self.MaxVisibleChars = 50;
+        self.timeIntervel = 2;
     }
     return self;
 }
@@ -56,6 +62,8 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
     self.statusBar.menu = menu;
     self.statusBar.highlightMode = YES;
     self.menu = menu;
+    
+    self.lastDBPasteboardItemTemp = [[FJDBManager defaultManager]queryFirstData];
     
     [self setupPasteBoard];
     [self setupObserverTimer];
@@ -157,7 +165,7 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
 
 -(void)setupObserverTimer
 {
-    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer timerWithTimeInterval:self.timeIntervel target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     [self.timer fire];
 }
@@ -175,15 +183,42 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
         _lastPasteboardItemTemp = pboardItem;
         FJPasteboardItem * item = [[FJPasteboardHelper shared]transferNSPasteboard];
         if ([item.type isEqualToString: NSPasteboardTypeString]) {
-            if([item.content isEqualToString:self.pasteboardItemsArray.firstObject.content])
-            {
+            if([item.content isEqualToString:self.pasteboardItemsArray.firstObject.content]) {
                 return;
             }
         }
+        //当程序启动后，对比粘贴板上的内容与数据库中的第一条内容；如果逻辑判断是一样的，就不保存了
+        //当已经创建粘贴板菜单时，说明已经有新的内容添加到数据库中，就不用再进行条件判断 了
+        if ([item.type isEqualToString: _lastDBPasteboardItemTemp.type] && ![self hasCreatePasteboardItem]) {
+            if ([item.type isEqualToString:NSPasteboardTypeString]) {
+                if ([item.content isEqualToString:self.lastDBPasteboardItemTemp.content]) {
+                    return;
+                }
+            }
+            else {
+                NSData * itemData = [NSKeyedArchiver archivedDataWithRootObject:item.contentUrls];
+                NSData * lastData = [NSKeyedArchiver archivedDataWithRootObject:_lastDBPasteboardItemTemp.contentUrls];
+                if ([itemData isEqualToData:lastData]) {
+                    return;
+                }
+            }
+        }
+        
         [self.pasteboardItemsArray insertObject:item atIndex:0];
         [[FJDBManager defaultManager]insertData:item];
         [self addMenuItem:item atIndex:0];
     }
+}
+
+-(BOOL)hasCreatePasteboardItem {
+    __block BOOL result = NO;
+    [self.menu.itemArray enumerateObjectsUsingBlock:^(NSMenuItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.title isEqualToString:@"粘贴板"]) {
+            *stop = YES;
+            result = YES;
+        }
+    }];
+    return result;
 }
 
 
@@ -291,10 +326,11 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
     }
 }
 
-
+//选中粘贴板菜单时
 - (void)menuItemSelect:(id)sender
 {
-    __block NSInteger selectedIndex = 0;
+    //先停掉计时器
+    [self.timer pause];
     __block NSMenu *pboardMenu = nil;
     //get the select item
     [self.menu.itemArray enumerateObjectsUsingBlock:^(NSMenuItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -304,13 +340,28 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
             * stop = YES;
         }
     }];
+    NSInteger selectedIndex = [pboardMenu.itemArray indexOfObject:sender];
     FJPasteboardItem * selectedItem = [self.pasteboardItemsArray objectAtIndex:selectedIndex];
-    
-    //remove the select item
-    [self.pasteboardItemsArray removeObjectAtIndex:selectedIndex];
-    [[FJDBManager defaultManager]deleteModel:selectedItem];
+    //将内容添加到粘贴板中
+    [self appendItemToPboard:selectedItem];
+    //从粘贴板菜单中删除原来的项
     [pboardMenu removeItemAtIndex:selectedIndex];
+    //数据库中原来的记录删掉，其实应该update一下就好了
+    //TODO:BEAR 数据库添加update接口
+    [[FJDBManager defaultManager]deleteModel:selectedItem];
+    selectedItem.time = [NSString stringWithFormat:@"%f",[[NSDate new] timeIntervalSince1970]];
+    [[FJDBManager defaultManager]insertData:selectedItem];
+    //开启定时器
+    [self.timer play];
+}
+
+- (void)updateSelectItem:(FJPasteboardItem*)selectItem {
+    [[FJDBManager defaultManager]deleteModel:selectItem];
+    [self appendItemToPboard:selectItem];
     
+}
+
+- (void)appendItemToPboard:(FJPasteboardItem*)selectedItem {
     //将数据写入到剪切板中
     NSPasteboard * pboard = [NSPasteboard generalPasteboard];
     [pboard clearContents];
@@ -346,8 +397,8 @@ SINGLETON_IMPLEMENTION(FJPasteboardHelper, shared)
             [pboard writeObjects:@[pboardItem]];
         }
     }
-    
 }
+
 
 
 @end

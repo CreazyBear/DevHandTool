@@ -22,4 +22,6 @@ SINGLETON_INTERFACE(FJPasteboardHelper, shared)
 
 - (void)endService;
 
+- (void)updateSelectItem:(FJPasteboardItem*)selectItem;
+
 @end

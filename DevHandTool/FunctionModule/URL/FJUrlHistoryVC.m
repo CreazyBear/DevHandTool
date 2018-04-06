@@ -10,11 +10,16 @@
 #import "FJUrlHistoryVC.h"
 #import "FJDBUrlHistoryTableManager.h"
 #import "FJDBManager.h"
+#import "FJQRCodeVC.h"
 
 @interface FJUrlHistoryVC ()<NSTableViewDelegate, NSTableViewDataSource>
 @property (weak) IBOutlet NSTableView *resultsTableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray<FJDBUrlHistoryModel*> *dataSource;
 @property (nonatomic, strong) NSMenu * rightClickMenu;
+
+@property (nonatomic, strong) NSWindowController *qrWindowController;
+@property (nonatomic, strong) NSWindow *extraWindow;
+@property (nonatomic, strong) FJQRCodeVC *fjQRCodeVC;
 @end
 
 @implementation FJUrlHistoryVC
@@ -42,7 +47,7 @@
     while (index != NSNotFound) {
         if (index < results.count) {
             FJDBUrlHistoryModel *model = [results objectAtIndex:index];
-            [[FJDBManager defaultManager] deleteModel:model];
+            [[FJDBManager defaultManager] deleteUrlModel:model];
             [self.dataSource removeObject:model];
         }
         index = [selectedIndexSet indexGreaterThanIndex:index];
@@ -50,6 +55,25 @@
     [self.resultsTableView reloadData];
 }
 
+- (IBAction)onQRCodeButtonClicked:(id)sender {
+    
+    NSIndexSet *selectedIndexSet = self.resultsTableView.selectedRowIndexes;
+    if (selectedIndexSet.count <= 0 ) {
+        return;
+    }
+    NSUInteger index = [selectedIndexSet firstIndex];
+    NSString * content = [self.dataSource[index] url];
+    
+    self.fjQRCodeVC = [[FJQRCodeVC alloc]initWithNibName:@"FJQRCodeVC" bundle:[NSBundle mainBundle] QRString:content];
+    self.extraWindow = [NSWindow windowWithContentViewController:self.fjQRCodeVC];
+    [self.extraWindow makeKeyWindow];
+    self.extraWindow.title = @"QR Code";
+    
+    self.qrWindowController = [[NSWindowController alloc]initWithWindow:self.extraWindow];
+    [self.qrWindowController showWindow:nil];
+    
+    
+}
 
 #pragma mark - NSTableViewDelegate, NSTableViewDataSource
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{

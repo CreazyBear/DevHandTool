@@ -21,5 +21,5 @@
 - (void) insertUrlData:(FJDBUrlHistoryModel*)data;
 - (NSMutableArray<FJDBUrlHistoryModel*>*) queryUrlData;
 - (void) clearAllUrlData;
-- (BOOL) deleteModel:(FJDBUrlHistoryModel*)model;
+- (BOOL) deleteUrlModel:(FJDBUrlHistoryModel*)model;
 @end

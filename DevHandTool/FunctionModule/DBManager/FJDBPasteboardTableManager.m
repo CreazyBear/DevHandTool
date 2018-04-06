@@ -1,4 +1,4 @@
-//
+;//
 //  FJDBPasteboardTableManager.m
 //  DevHandTool
 //
@@ -32,7 +32,7 @@
     NSMutableArray * result = [NSMutableArray new];
     FMDatabase * db = [FMDatabase databaseWithPath:PATH_OF_DATABASE];
     if ([db open]) {
-        NSString * sql = [NSString stringWithFormat: @"select * from %@", UrlHistoryTableName];
+        NSString * sql = [NSString stringWithFormat: @"select * from %@ order by time desc;", FJPasteboardTableName];
         FMResultSet * rs = [db executeQuery:sql];
         while ([rs next]) {
             
@@ -53,8 +53,35 @@
         [db close];
     }
     return result;
-    
 }
+
+- (FJPasteboardItem*)queryFirstData {
+    NSMutableArray * result = [NSMutableArray new];
+    FMDatabase * db = [FMDatabase databaseWithPath:PATH_OF_DATABASE];
+    if ([db open]) {
+        NSString * sql = [NSString stringWithFormat: @"select * from %@ order by time desc limit 1;", FJPasteboardTableName];
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            
+            NSString * time = [rs stringForColumn:@"time"];
+            NSString * content = [rs stringForColumn:@"content"];
+            NSString * type = [rs stringForColumn:@"type"];
+            NSData * contentUrlsData = [rs dataForColumn:@"contentUrls"];
+            NSArray * contentUrls = [NSKeyedUnarchiver unarchiveObjectWithData:contentUrlsData];
+            
+            FJPasteboardItem * model = [FJPasteboardItem new];
+            model.time = time;
+            model.content = content;
+            model.type = type;
+            model.contentUrls = contentUrls;
+            
+            [result addObject:model];
+        }
+        [db close];
+    }
+    return result.firstObject;
+}
+
 
 -(BOOL)deleteModel:(FJPasteboardItem*)model {
     BOOL result = NO;
