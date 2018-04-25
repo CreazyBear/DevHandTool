@@ -10,9 +10,15 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "FJBlueToothPeripheralInfoModel.h"
 #import <Cocoa/Cocoa.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface FJBlueToothManager() <CBCentralManagerDelegate,CBPeripheralDelegate>
-@property(nonatomic, strong) CBCentralManager *myCentralManager;
+
+static NSString * const kCharacteristicUUID = @"6789";
+static NSString * const kServiceUUID = @"FFEE";
+
+@interface FJBlueToothManager() <CBCentralManagerDelegate,CBPeripheralDelegate,CBPeripheralManagerDelegate>
+@property (nonatomic, strong) CBCentralManager *myCentralManager;
+@property (nonatomic, strong) CBPeripheralManager *peripheralManager;
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, assign) BOOL scanFlag;
 @end
@@ -58,6 +64,7 @@ SINGLETON_IMPLEMENTION(FJBlueToothManager, singletonInstance)
 -(void)stop {
     self.scanFlag = NO;
     [self.myCentralManager stopScan];
+    [self.peripheralManager stopAdvertising];
 }
 
 -(void)reset {
@@ -65,6 +72,12 @@ SINGLETON_IMPLEMENTION(FJBlueToothManager, singletonInstance)
     self.myCentralManager = nil;
     self.scanFlag = NO;
     [self removeObserver:self forKeyPath:@"myCentralManager.state"];
+}
+
+-(void)startBroadcast {
+    
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -170,6 +183,50 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 
 - (void)peripheralIsReadyToSendWriteWithoutResponse:(CBPeripheral *)peripheral {
     
+}
+
+#pragma mark - CBPeripheralManagerDelegate
+- (void)peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error {
+    if (error == nil) {
+        //添加服务后可以在此向外界发出通告 调用完这个方法后会调用代理的
+        //(void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error
+        [peripheral startAdvertising:@{CBAdvertisementDataLocalNameKey : @"BeargerHunter",
+                                       CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:kServiceUUID]]
+                                       }];
+    }
+}
+
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error{
+    NSLog(@"in peripheralManagerDidStartAdvertisiong:error");
+}
+
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
+    switch (peripheral.state) {
+            //在这里判断蓝牙设别的状态  当开启了则可调用  setUp方法(自定义)
+        case CBPeripheralManagerStatePoweredOn:
+        {
+            NSLog(@"powered on");
+            CBMutableCharacteristic *customerCharacteristic = [[CBMutableCharacteristic alloc]initWithType:[CBUUID UUIDWithString:kCharacteristicUUID]
+                                                                                                properties:CBCharacteristicPropertyNotify
+                                                                                                     value:nil
+                                                                                               permissions:CBAttributePermissionsReadable];
+            CBUUID *serviceUUID = [CBUUID UUIDWithString:kServiceUUID];
+            CBMutableService *customerService = [[CBMutableService alloc]initWithType:serviceUUID primary:YES];
+            
+            [customerService setCharacteristics:@[customerCharacteristic]];
+            
+            [peripheral addService:customerService];
+        }
+            
+            
+            break;
+        case CBPeripheralManagerStatePoweredOff:
+            NSLog(@"powered off");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

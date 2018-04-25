@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -64,6 +64,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgW-gf-a3u">
+                    <rect key="frame" x="156" y="394" width="39" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="广播" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="o6n-hj-lja">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="12" name=".PingFangSC-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onBroadcastButtonClicked:" target="-2" id="fD0-Hi-pfJ"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="uKZ-Lf-nw0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="97T-wa-geG"/>
@@ -71,6 +81,8 @@
                 <constraint firstAttribute="trailing" secondItem="SGj-K4-Flx" secondAttribute="trailing" constant="20" id="Rfw-3E-Gfd"/>
                 <constraint firstItem="uKZ-Lf-nw0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Tfx-fz-3pk"/>
                 <constraint firstItem="Kwv-5H-gjz" firstAttribute="centerY" secondItem="uKZ-Lf-nw0" secondAttribute="centerY" id="Uyt-b7-Qwr"/>
+                <constraint firstItem="rgW-gf-a3u" firstAttribute="centerY" secondItem="Kwv-5H-gjz" secondAttribute="centerY" id="XJo-xQ-moE"/>
+                <constraint firstItem="rgW-gf-a3u" firstAttribute="leading" secondItem="Kwv-5H-gjz" secondAttribute="trailing" constant="29" id="e5X-x9-hHf"/>
                 <constraint firstItem="SGj-K4-Flx" firstAttribute="top" secondItem="uKZ-Lf-nw0" secondAttribute="bottom" constant="8" id="mUx-mg-VGx"/>
                 <constraint firstItem="SGj-K4-Flx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="qkI-xF-saE"/>
                 <constraint firstItem="Kwv-5H-gjz" firstAttribute="leading" secondItem="uKZ-Lf-nw0" secondAttribute="trailing" constant="29" id="zqV-kE-4Lt"/>

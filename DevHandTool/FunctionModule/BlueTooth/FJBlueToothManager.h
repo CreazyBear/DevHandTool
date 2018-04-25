@@ -25,4 +25,5 @@ SINGLETON_INTERFACE(FJBlueToothManager, singletonInstance)
 -(void)start;
 -(void)stop;
 -(void)reset;
+-(void)startBroadcast;
 @end

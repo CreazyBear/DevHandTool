@@ -31,6 +31,11 @@
     [[FJBlueToothManager singletonInstance]stop];
 }
 
+- (IBAction)onBroadcastButtonClicked:(id)sender {
+    [[FJBlueToothManager singletonInstance]startBroadcast];
+}
+
+
 #pragma mark - FJBlueToothManagerDelegate
 -(void)didDiscoverPeripheral:(FJBlueToothPeripheralInfoModel *)model {
     NSString * info = [NSString stringWithFormat:@"Name:%@\nRSSI:%@\nAdvertisementData:%@\n------------",model.name,model.RSSI,model.advertisementData];
