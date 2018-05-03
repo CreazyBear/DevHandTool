@@ -70,6 +70,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
+                        <tabViewItem label="地图" identifier="" id="0uh-MH-nfA">
+                            <view key="view" id="dQL-Y0-Rc8">
+                                <rect key="frame" x="10" y="33" width="794" height="570"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
                     </tabViewItems>
                 </tabView>
             </subviews>

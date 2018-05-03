@@ -15,6 +15,7 @@
 #import "FJBlueToothVC.h"
 #import "FJPasteboardVC.h"
 #import "FJPushVC.h"
+#import "FJMapVC.h"
 
 @interface FJRootViewController ()
 @property (weak) IBOutlet NSTabView *mainTabView;
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) FJBlueToothVC *fjBlueToothVC;
 @property (nonatomic, strong) FJPasteboardVC *fjPasteboardVC;
 @property (nonatomic, strong) FJPushVC *fjPushVC;
+@property (nonatomic, strong) FJMapVC *fjMapVC;
 @end
 
 @implementation FJRootViewController
@@ -65,6 +67,12 @@
     self.fjPushVC = [[FJPushVC alloc]initWithNibName:nil bundle:nil];
     self.fjPushVC.view.frame = self.view.bounds;
     [tabViewItem8 setView:self.fjPushVC.view];
+    
+    NSTabViewItem *tabViewItem9 = [self.mainTabView.tabViewItems objectAtIndex:8];
+    self.fjMapVC = [[FJMapVC alloc]initWithNibName:nil bundle:nil];
+    self.fjMapVC.view.frame = self.view.bounds;
+    [tabViewItem9 setView:self.fjMapVC.view];
+
 }
 
 

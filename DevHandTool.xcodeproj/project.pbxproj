@@ -53,6 +53,8 @@
 		0AEFB270206CDAC000BDA229 /* FJPasteboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB26F206CDAC000BDA229 /* FJPasteboardHelper.m */; };
 		0AEFB273206CE5F000BDA229 /* FJDBPasteboardTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB272206CE5F000BDA229 /* FJDBPasteboardTableManager.m */; };
 		4CEC4E5D111CDF5DE31A6F5E /* libPods-DevHandTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EE84F9A4BDA57811C23574 /* libPods-DevHandTool.a */; };
+		A50DF6E5209B609600C9424D /* FJMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A50DF6E3209B609600C9424D /* FJMapVC.m */; };
+		A50DF6E6209B609600C9424D /* FJMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A50DF6E4209B609600C9424D /* FJMapVC.xib */; };
 		A58A328D1FEA8CBB007F83DD /* FJLinkMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A58A328B1FEA8CBB007F83DD /* FJLinkMapVC.m */; };
 		A58A328E1FEA8CBB007F83DD /* FJLinkMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58A328C1FEA8CBB007F83DD /* FJLinkMapVC.xib */; };
 		A58A32921FEA8CD8007F83DD /* FJSameCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A58A32901FEA8CD8007F83DD /* FJSameCodeVC.m */; };
@@ -142,6 +144,9 @@
 		0AEFB271206CE5F000BDA229 /* FJDBPasteboardTableManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJDBPasteboardTableManager.h; sourceTree = "<group>"; };
 		0AEFB272206CE5F000BDA229 /* FJDBPasteboardTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJDBPasteboardTableManager.m; sourceTree = "<group>"; };
 		35828777773836B572D89FCF /* Pods-DevHandTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevHandTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevHandTool/Pods-DevHandTool.debug.xcconfig"; sourceTree = "<group>"; };
+		A50DF6E2209B609600C9424D /* FJMapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJMapVC.h; sourceTree = "<group>"; };
+		A50DF6E3209B609600C9424D /* FJMapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJMapVC.m; sourceTree = "<group>"; };
+		A50DF6E4209B609600C9424D /* FJMapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FJMapVC.xib; sourceTree = "<group>"; };
 		A58A328A1FEA8CBB007F83DD /* FJLinkMapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FJLinkMapVC.h; sourceTree = "<group>"; };
 		A58A328B1FEA8CBB007F83DD /* FJLinkMapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FJLinkMapVC.m; sourceTree = "<group>"; };
 		A58A328C1FEA8CBB007F83DD /* FJLinkMapVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FJLinkMapVC.xib; sourceTree = "<group>"; };
@@ -245,6 +250,7 @@
 		09E5360B1FEA5CFF00D036F5 /* FunctionModule */ = {
 			isa = PBXGroup;
 			children = (
+				A50DF6E1209B606700C9424D /* Map */,
 				0AAB39A22074B7A60023B8C0 /* Push */,
 				0AEFB264206CD76B00BDA229 /* Pasteboard */,
 				0A735265206B2FE200309048 /* BlueTooth */,
@@ -433,6 +439,16 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		A50DF6E1209B606700C9424D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A50DF6E2209B609600C9424D /* FJMapVC.h */,
+				A50DF6E3209B609600C9424D /* FJMapVC.m */,
+				A50DF6E4209B609600C9424D /* FJMapVC.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		C4C79385EA18521F7DDA2FF1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +539,7 @@
 				09693AB81FEB6473008DB0D8 /* mainScript.sh in Resources */,
 				098A116620158553003F881F /* FJSaveUrlVC.xib in Resources */,
 				09E535FC1FEA5A3700D036F5 /* Assets.xcassets in Resources */,
+				A50DF6E6209B609600C9424D /* FJMapVC.xib in Resources */,
 				0AAB39AA2074DD6A0023B8C0 /* FJPushVC.xib in Resources */,
 				A58A32981FEA8CEB007F83DD /* FJUnuseedImportVC.xib in Resources */,
 				0914EBC21FEB88AD003BCFE7 /* FJQRCodeVC.xib in Resources */,
@@ -618,6 +635,7 @@
 				0AEFB270206CDAC000BDA229 /* FJPasteboardHelper.m in Sources */,
 				09E5363E1FEA63A100D036F5 /* FJURLHelper.m in Sources */,
 				09693AAC1FEB3FC6008DB0D8 /* SymbolModel.m in Sources */,
+				A50DF6E5209B609600C9424D /* FJMapVC.m in Sources */,
 				0AEFB263206CD5D800BDA229 /* NSFileManager+FJExtension.m in Sources */,
 				098A116520158553003F881F /* FJSaveUrlVC.m in Sources */,
 				0AEFB268206CD78B00BDA229 /* FJPasteboardVC.m in Sources */,
