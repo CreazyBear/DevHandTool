@@ -77,7 +77,12 @@ SINGLETON_IMPLEMENTION(FJBlueToothManager, singletonInstance)
 -(void)startBroadcast {
     
     self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+}
 
+-(void)connectDevices:(FJBlueToothPeripheralInfoModel*)model {
+    if (model) {
+        [self.myCentralManager connectPeripheral:model.peripheral options:nil];
+    }
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -112,7 +117,11 @@ SINGLETON_IMPLEMENTION(FJBlueToothManager, singletonInstance)
 
 - (void)centralManager:(CBCentralManager *)central
   didConnectPeripheral:(CBPeripheral *)peripheral {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didConnectDevices:)]) {
+        FJBlueToothPeripheralInfoModel * model = [FJBlueToothPeripheralInfoModel new];
+        model.peripheral = peripheral;
+        [self.delegate didConnectDevices:model];
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -146,7 +155,7 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
-    
+
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(nullable NSError *)error {
@@ -154,7 +163,7 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error {
-    
+   
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {

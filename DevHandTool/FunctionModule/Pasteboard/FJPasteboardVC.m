@@ -37,6 +37,16 @@
 
 -(void)setupDataSource {
     self.dataSource = [[FJDBManager defaultManager] queryData];
+    __block BOOL hasChanged = NO;
+    [self.dataSource enumerateObjectsUsingBlock:^(FJPasteboardItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.content == nil && obj.contentUrls == nil) {
+            [[FJDBManager defaultManager] deleteModel:obj];
+            hasChanged = YES;
+        }
+    }];
+    if (hasChanged) {
+        self.dataSource = [[FJDBManager defaultManager] queryData];
+    }
 }
 
 

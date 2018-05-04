@@ -29,7 +29,12 @@
 - (void)bindData:(FJPasteboardItem *)data {
     
     if ([data.type isEqualToString: NSPasteboardTypeString]) {
-        self.textContent.stringValue = data.content;
+        if (!data.content) {
+            self.textContent.stringValue = @"";
+        }
+        else {
+            self.textContent.stringValue = data.content;
+        }
         self.textContent.hidden = NO;
         self.imageContent.hidden = YES;
     }

@@ -40,6 +40,11 @@
 -(void)didDiscoverPeripheral:(FJBlueToothPeripheralInfoModel *)model {
     NSString * info = [NSString stringWithFormat:@"Name:%@\nRSSI:%@\nAdvertisementData:%@\n------------",model.name,model.RSSI,model.advertisementData];
     [self appendContentToResultView:info];
+    [[FJBlueToothManager singletonInstance]connectDevices:model];
+}
+
+-(void)didConnectDevices:(FJBlueToothPeripheralInfoModel*)model {
+    
 }
 
 #pragma mark - utils

@@ -14,7 +14,7 @@
 @protocol FJBlueToothManagerDelegate
 
 -(void)didDiscoverPeripheral:(FJBlueToothPeripheralInfoModel*)model;
-
+-(void)didConnectDevices:(FJBlueToothPeripheralInfoModel*)model;
 
 @end
 
@@ -26,4 +26,5 @@ SINGLETON_INTERFACE(FJBlueToothManager, singletonInstance)
 -(void)stop;
 -(void)reset;
 -(void)startBroadcast;
+-(void)connectDevices:(FJBlueToothPeripheralInfoModel*)model;
 @end
